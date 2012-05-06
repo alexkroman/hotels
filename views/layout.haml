@@ -1,0 +1,65 @@
+%html
+  %head
+    %title #{@page_title}
+    <meta name="verify-v1" content="683rHgbFnOp0HtHNUSHgYIhTaWM5M+zj8aTMzTVZ8b4=" >
+    <meta name="description" content="#{@page_title}! Save money for other things by staying at one of the cheapest hotels in #{@location}" >
+    <meta name="keywords" content="#{cheap_words.join(", ")}" >
+    %link{:rel=>'stylesheet', :href=>'/stylesheets/style.css', :type => "text/css"}       
+  %body
+    #topblock
+      %h1 #{@title}
+      %p Hi, my name is Alex and I travel a lot for work and to visit my family in Cleveland.  I created this site to come up with a list of the <b>cheapest hotels in America</b> to <b>save you money</b>.  Please send any comments to alex@damncheaphotels.com.
+        
+      = yield
+      - @hotels.each_with_index do |hotel,index|
+        - if index == 3
+          <script type="text/javascript"><!--
+          google_ad_client = "pub-6302077073078525";
+          /* 728x90, created 8/27/09 */
+          google_ad_slot = "9595731424";
+          google_ad_width = 728;
+          google_ad_height = 90;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
+        %p{:class => 'hotel'} 
+          %span{:class => 'price'} 
+            $#{hotel.price}
+          <a href="/go/#{hotel.hotel_id}">#{hotel.name}</a> in <em>#{hotel.location}</em>
+      <script type="text/javascript"><!--
+      google_ad_client = "pub-6302077073078525";
+      /* 728x90, created 8/27/09 */
+      google_ad_slot = "9595731424";
+      google_ad_width = 728;
+      google_ad_height = 90;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+      
+    
+    #hotelblock
+      %h2 Search By City
+      %form{:action => "/", :method => 'get'}
+        %input{:type => 'text', :name => 'name', :value => @location}
+        %input{:value => 'Go', :type => 'submit'}
+        %br 
+        %em ex. Cleveland, OH
+        %h2 Browse Cheap Hotel Deals
+      #hotels
+        - @recommended.each do |location|
+          %a{:href => "/#{location}"}
+            #{cheap_heading} in <b>#{location}</b>
+          %br
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-173596-9");
+      pageTracker._trackPageview();
+      } catch(err) {}</script>        
